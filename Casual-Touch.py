@@ -72,19 +72,17 @@ while True:
                 pyautogui.scroll(scroll_amount)
 
     # 12. Four Fingers Up: Right-click Mode
-    if fingers[1] == 1 and fingers[2] == 1 and fingers[3] == 1 and fingers[4] == 1:
+    if all(fingers[i] == 1 for i in range(1, 5)):
         pyautogui.rightClick()
         time.sleep(1)  # Adding a small delay to avoid multiple right-clicks
 
-    # 13. Thumb Left: Swipe Left Mode
-    if fingers[0] == 1 and all(fingers[i] == 0 for i in range(1, 5)):
-        # Check thumb position (x-coordinate) against the index finger
-        if x1 < x2:  # If the thumb (x0) is to the left of the index finger (x1)
-            pyautogui.hotkey('ctrl', 'left')  # Perform a left swipe
-            time.sleep(1)  # Adding a small delay to avoid multiple swipes
+    # 13. Index Finger and Pinky Finger Extended: Swipe Left Mode
+    if fingers[1] == 1 and fingers[4] == 1 and all(fingers[i] == 0 for i in range(0, 1)) and all(fingers[i] == 0 for i in range(2, 4)):
+        pyautogui.hotkey('ctrl', 'left')  # Perform a left swipe
+        time.sleep(1)  # Adding a small delay to avoid multiple swipes
 
-    # 14. Pinky Up: Swipe Right Mode
-    if all(fingers[i] == 0 for i in range(0, 4)) and fingers[4] == 1:
+    # 14. Pinky and Thumb Extended: Swipe Right Mode
+    if fingers[0] == 1 and fingers[4] == 1 and all(fingers[i] == 0 for i in range(1, 4)):
         pyautogui.hotkey('ctrl', 'right')
         time.sleep(1)  # Adding a small delay to avoid multiple swipes
 
@@ -96,4 +94,8 @@ while True:
 
     # 16. Display the Image
     cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord('q'):  # Press 'q' to break the loop
+        break
+
+cap.release()
+cv2.destroyAllWindows()
