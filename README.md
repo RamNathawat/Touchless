@@ -1,4 +1,4 @@
-# HandControl
+# Casual-Touch
 
 ## Project Description
 HandControl is an innovative gesture recognition system that transforms hand movements into intuitive mouse controls, enabling a touchless user experience. Designed for accessibility, this project allows users to navigate their digital environment with natural hand gestures, enhancing efficiency and usability.
@@ -30,6 +30,30 @@ HandControl is an innovative gesture recognition system that transforms hand mov
    ```
    python Casual-Touch.py
 
+## Gesture Controls
+
+### Mouse Movement
+- **Index Finger Up**: Move the mouse cursor.
+
+### Clicking
+- **Index and Middle Fingers Up**: Click when fingers are close, scroll when apart.
+
+### Scrolling
+- **Index and Middle Fingers Up**: Adjust finger distance to scroll.
+
+### Right Click
+- **Four Fingers Up**: Perform a right-click.
+
+### Swipe Left
+- **Thumb Up and Index Finger Up**: Perform a left swipe (Ctrl + Left Arrow).
+
+### Swipe Right
+- **Pinky Up**: Perform a right swipe (Ctrl + Right Arrow).
+
+## Additional Notes
+- Adjust parameters in the code for optimal performance based on your setup.
+- Ensure your webcam is enabled and accessible.
+- Feel free to contribute or improve this project!
 
 ## Authors
 
