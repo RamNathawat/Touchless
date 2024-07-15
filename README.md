@@ -36,20 +36,20 @@ HandControl is an innovative gesture recognition system that transforms hand mov
 - **Index Finger Up**: Move the mouse cursor.
 
 ### Clicking
-- **Index and Middle Fingers Up**: Click when fingers are close, scroll when apart.
+- **Index and Middle Fingers Up**: Click when fingers are close (less than 40 pixels apart).
 
 ### Scrolling
-- **Index and Middle Fingers Up**: Adjust finger distance to scroll.
+- **Index and Middle Fingers Up**: Adjust finger distance to scroll when fingers are apart (40 pixels or more).
 
 ### Right Click
 - **Four Fingers Up**: Perform a right-click.
-
+  
 ### Swipe Left
-- **Thumb Up and Index Finger Up**: Perform a left swipe (Ctrl + Left Arrow).
+- **Index Finger and Pinky Finger Up**: Perform a left swipe (Ctrl + Left Arrow).
 
 ### Swipe Right
-- **Pinky Up**: Perform a right swipe (Ctrl + Right Arrow).
-
+- **Pinky and Thumb Up**: Perform a right swipe (Ctrl + Right Arrow).
+  
 ## Additional Notes
 - Adjust parameters in the code for optimal performance based on your setup.
 - Ensure your webcam is enabled and accessible.
