@@ -6,10 +6,11 @@ import pyautogui
 
 ##########################
 wCam, hCam = 640, 480
-frameR = 100  # Frame Reduction
+frameR = 0  # Frame Reduction
 smoothening = 7
 clickCooldown = 0.5  # Cooldown for clicking
 lastClickTime = 0
+scrollSpeed = 7  # Adjust scroll speed
 #########################
 
 pTime = 0
@@ -34,8 +35,8 @@ while True:
 
     # 2. Get the tip of the index and middle fingers
     if len(lmList) != 0:
-        x1, y1 = lmList[8][1:]  # Index finger tip
-        x2, y2 = lmList[12][1:]  # Middle finger tip
+        x1, y1 = lmList[8][1:]
+        x2, y2 = lmList[12][1:]
 
     # 3. Check which fingers are up
     fingers = detector.fingersUp()
@@ -43,58 +44,50 @@ while True:
 
     # 4. Only Index Finger : Moving Mode
     if fingers[1] == 1 and all(fingers[i] == 0 for i in range(2, 5)):
-        # 5. Convert Coordinates
         x3 = np.interp(x1, (frameR, wCam - frameR), (0, wScr))
         y3 = np.interp(y1, (frameR, hCam - frameR), (0, hScr))
-        # 6. Smoothen Values
         clocX = plocX + (x3 - plocX) / smoothening
         clocY = plocY + (y3 - plocY) / smoothening
-
-        # 7. Move Mouse
         pyautogui.moveTo(wScr - clocX, clocY)
         cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
         plocX, plocY = clocX, clocY
 
-    # 8. Both Index and Middle Fingers Up: Clicking or Scrolling Mode
+    # 5. Both Index and Middle Fingers Up: Clicking or Scrolling Mode
     if fingers[1] == 1 and fingers[2] == 1:
-        # 9. Find distance between fingers
         length, img, lineInfo = detector.findDistance(8, 12, img)
-
-        # 10. Click mouse if distance short and cooldown has passed
         if length < 40 and (time.time() - lastClickTime) > clickCooldown:
             cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
             pyautogui.click()
-            lastClickTime = time.time()  # Update last click time
-        # If distance is greater, treat as scrolling
+            lastClickTime = time.time()
         elif length >= 40:
-            scroll_amount = int((y1 - y2) / 10)  # Adjust sensitivity here
-            if abs(scroll_amount) > 0:  # Only scroll if there is a significant movement
+            scroll_amount = int((y1 - y2) / scrollSpeed)
+            if abs(scroll_amount) > 0:
                 pyautogui.scroll(scroll_amount)
 
-    # 12. Four Fingers Up: Right-click Mode
+    # 6. Four Fingers Up: Right-click Mode
     if all(fingers[i] == 1 for i in range(1, 5)):
         pyautogui.rightClick()
-        time.sleep(1)  # Adding a small delay to avoid multiple right-clicks
+        time.sleep(1)
 
-    # 13. Index Finger and Pinky Finger Extended: Swipe Left Mode
+    # 7. Index Finger and Pinky Finger Extended: Swipe Left Mode
     if fingers[1] == 1 and fingers[4] == 1 and all(fingers[i] == 0 for i in range(0, 1)) and all(fingers[i] == 0 for i in range(2, 4)):
-        pyautogui.hotkey('ctrl', 'left')  # Perform a left swipe
-        time.sleep(1)  # Adding a small delay to avoid multiple swipes
+        pyautogui.hotkey('ctrl', 'left')
+        time.sleep(1)
 
-    # 14. Pinky and Thumb Extended: Swipe Right Mode
+    # 8. Pinky and Thumb Extended: Swipe Right Mode
     if fingers[0] == 1 and fingers[4] == 1 and all(fingers[i] == 0 for i in range(1, 4)):
         pyautogui.hotkey('ctrl', 'right')
-        time.sleep(1)  # Adding a small delay to avoid multiple swipes
+        time.sleep(1)
 
-    # 15. Frame Rate
+    # 9. Frame Rate
     cTime = time.time()
     fps = 1 / (cTime - pTime)
     pTime = cTime
     cv2.putText(img, str(int(fps)), (20, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
 
-    # 16. Display the Image
+    # 10. Display the Image
     cv2.imshow("Image", img)
-    if cv2.waitKey(1) & 0xFF == ord('q'):  # Press 'q' to break the loop
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cap.release()
