@@ -1,4 +1,4 @@
-# Casual-Touch
+# Touchless
 
 ## Project Description
 HandControl is an innovative gesture recognition system that transforms hand movements into intuitive mouse controls, enabling a touchless user experience. Designed for accessibility, this project allows users to navigate their digital environment with natural hand gestures, enhancing efficiency and usability.
@@ -19,10 +19,10 @@ HandControl is an innovative gesture recognition system that transforms hand mov
 ## Installation Instructions
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/RamNathawat/Casual-Touch.git
+   git clone https://github.com/RamNathawat/Touchless.git
 2. **Navigate to the project directory**:
    ```
-   cd Casual-Touch
+   cd Touchless
 3. **Install the required dependencies**:
    ```
    pip install -r requirements.txt
