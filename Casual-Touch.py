@@ -6,11 +6,11 @@ import pyautogui
 
 ##########################
 wCam, hCam = 640, 480
-frameR = 0  # Frame Reduction
+frameR = 0
 smoothening = 7
-clickCooldown = 0.5  # Cooldown for clicking
+clickCooldown = 0.5
 lastClickTime = 0
-scrollSpeed = 7  # Adjust scroll speed
+scrollSpeed = 10
 #########################
 
 pTime = 0
