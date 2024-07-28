@@ -1,7 +1,7 @@
 # Touchless
 
 ## Project Description
-HandControl is an innovative gesture recognition system that transforms hand movements into intuitive mouse controls, enabling a touchless user experience. Designed for accessibility, this project allows users to navigate their digital environment with natural hand gestures, enhancing efficiency and usability.
+Touchless is an innovative gesture recognition system that transforms hand movements into intuitive mouse controls, enabling a touchless user experience. Designed for accessibility, this project allows users to navigate their digital environment with natural hand gestures, enhancing efficiency and usability.
 
 ## Key Features
 - **Gesture-Based Control**: Move the cursor, click, scroll, and swipe through simple hand gestures.
